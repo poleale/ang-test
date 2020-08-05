@@ -29,6 +29,7 @@ This is some body text
     //var sampleJSON = "https://raw.githubusercontent.com/poleale/ang-test/gh-pages/testdata.json";
     //var sampleJSON = "https://raw.githubusercontent.com/poleale/ang-test/gh-pages/testdata.json?callback=?";
     var sampleJSON = "gh-pages/testdata.json";
+    var sampleJSON2 = "testdata.json";
     $.ajax({
       url: sampleJSON, 
       type: 'GET',
@@ -39,6 +40,18 @@ This is some body text
       },
       error: function() {
         console.log("error");
+      }
+    });
+    $.ajax({
+      url: sampleJSON2, 
+      type: 'GET',
+      headers: {'Access-Control-Allow-Origin':'*'}, 
+      dataType: 'jsonp',
+      success: function(data){
+        console.log(data);
+      },
+      error: function() {
+        console.log("error 2");
       }
     });
   </script>
