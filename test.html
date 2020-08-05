@@ -6,22 +6,18 @@
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
-This is some body text 8
+This is some body text 9
   
   <div id="images"></div>
   
   <script>
     var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
-    function doCORSRequest(options, successFcn) {
+    function doCORSRequest(options, fcn) {
       var x = new XMLHttpRequest();
       x.open(options.method, cors_api_url + options.url);
       x.onload = x.onerror = function() {
-        /*successFcn(
-          options.method + ' ' + options.url + '\n' +
-          x.status + ' ' + x.statusText + '\n\n' +
-          (x.responseText || '')
-        );*/
-	successFcn(x);
+        /*fcn(options.method + ' ' + options.url + '\n' + x.status + ' ' + x.statusText + '\n\n' + (x.responseText || '') );*/
+	fcn(x);
       };
       if (/^POST/i.test(options.method)) {
         x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -36,7 +32,7 @@ This is some body text 8
     var sampleJSON2 = "testdata.json?callback=?";
     doCORSRequest({
         method:  'POST',
-        url: sampleJSON5,
+        url: sampleJSON1,
         data: false
       }, function(result) {
 	var obj = jQuery.parseJSON( result.responseText );
