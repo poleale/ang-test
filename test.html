@@ -6,54 +6,42 @@
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
-This is some body text 4
+This is some body text 5
   
   <div id="images"></div>
   
   <script>
-    var flickerAPI = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-    $.getJSON( flickerAPI, {
-      tags: "mount rainier",
-      tagmode: "any",
-      format: "json"
-    }).done(function( data ) {
-      console.log(data);
-        $.each( data.items, function( i, item ) {
-          $( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
-          if ( i === 3 ) {
-            return false;
-          }
-        });
-     });
-    //var sampleJSON = "https://tools.learningcontainer.com/sample-json.json?callback=?";
-    //var sampleJSON = "https://raw.githubusercontent.com/poleale/ang-test/gh-pages/testdata.json";
-    //var sampleJSON = "https://raw.githubusercontent.com/poleale/ang-test/gh-pages/testdata.json?callback=?";
-    var sampleJSON = "gh-pages/testdata.json?callback=?";
+    var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
+    function doCORSRequest(options, printResult) {
+      var x = new XMLHttpRequest();
+      x.open(options.method, cors_api_url + options.url);
+      x.onload = x.onerror = function() {
+        printResult(
+          options.method + ' ' + options.url + '\n' +
+          x.status + ' ' + x.statusText + '\n\n' +
+          (x.responseText || '')
+        );
+      };
+      if (/^POST/i.test(options.method)) {
+        x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      }
+      x.send(options.data);
+    }
+    var sampleJSON0 = "https://tools.learningcontainer.com/sample-json.json?callback=?";
+    var sampleJSON5 = "https://tools.learningcontainer.com/sample-json.json";
+    var sampleJSON1 = "https://raw.githubusercontent.com/poleale/ang-test/gh-pages/testdata.json";
+    var sampleJSON3 = "https://raw.githubusercontent.com/poleale/ang-test/gh-pages/testdata.json?callback=?";
+    var sampleJSON4 = "gh-pages/testdata.json?callback=?";
     var sampleJSON2 = "testdata.json?callback=?";
-    $.ajax({
-      url: sampleJSON, 
-      type: 'GET',
-      headers: {'Access-Control-Allow-Origin':'*'}, 
-      dataType: 'jsonp',
-      success: function(data){
-        console.log(data);
-      },
-      error: function() {
-        console.log("error");
-      }
+    doCORSRequest({
+        method:  'POST',
+        url: sampleJSON5,
+        data: false
+      }, function printResult(result) {
+        console.log(result);
     });
-    $.ajax({
-      url: sampleJSON2, 
-      type: 'GET',
-      headers: {'Access-Control-Allow-Origin':'*'}, 
-      dataType: 'jsonp',
-      success: function(data){
-        console.log(data);
-      },
-      error: function() {
-        console.log("error 2");
-      }
-    });
+    
+    
   </script>
 </body>
 </html>
