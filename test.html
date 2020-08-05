@@ -33,6 +33,9 @@ This is some body text
       dataType: 'jsonp', // // <-------- use JSONP
       success: function(data){
         console.log(data);
+      },
+      error: function() {
+        console.log("error");
       }
     });
   </script>
