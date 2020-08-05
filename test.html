@@ -25,6 +25,16 @@ This is some body text
           }
         });
      });
+    var sampleJSON = "https://tools.learningcontainer.com/sample-json.json?callback=?";
+    $.ajax({
+      url: sampleJSON, 
+      type: 'GET',
+      headers: {'Access-Control-Allow-Origin':'*'}, // <-------- set this
+      dataType: 'jsonp', // // <-------- use JSONP
+      success: function(data){
+        console.log(data);
+      }
+    });
   </script>
 </body>
 </html>
