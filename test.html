@@ -6,7 +6,7 @@
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
-This is some body text 6
+This is some body text 8
   
   <div id="images"></div>
   
@@ -21,7 +21,7 @@ This is some body text 6
           x.status + ' ' + x.statusText + '\n\n' +
           (x.responseText || '')
         );*/
-		successFcn(x);
+	successFcn(x);
       };
       if (/^POST/i.test(options.method)) {
         x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -39,7 +39,8 @@ This is some body text 6
         url: sampleJSON5,
         data: false
       }, function(result) {
-        console.log(result);
+	var obj = jQuery.parseJSON( result.responseText );
+        console.log(obj);
     });
     
     
